@@ -39,13 +39,15 @@ class DropController extends Controller
                         'file_title' => $newName,
                         'file_type' => $mimeType,
                         'file_size' => $fileSize
+                        
                     ]);
-
-                    return redirect('dropbox');
+                    $output=['success' => 'uploaded success'];
+                    return response()->json($output);
                 }
             }
         } catch (\Exception $e) {
-            return "Message: {$e->getMessage()}";
+            $output=['error' => 'error upload'];
+            return response()->json($output);
         }
     }
 
